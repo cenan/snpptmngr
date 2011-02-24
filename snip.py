@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# (C) 2011 cenan ozen <cenan.ozen@gmail.com>
 
 import os
 from os.path import dirname, join, abspath
@@ -20,8 +21,7 @@ class MainWnd:
 
 		root.protocol("WM_DELETE_WINDOW", self.ask_quit)
 
-		#self.parent.resizable(width=False, height=False)
-		self.parent.title("snippet Db")
+		self.parent.title("snippets")
 		self.parent.configure(padx=10, pady=10)
 		self.create_widgets()
 
