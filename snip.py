@@ -23,6 +23,7 @@ class MainWnd:
 
 		self.parent.title("snippets")
 		self.parent.configure(padx=10, pady=10)
+		self.parent.minsize(600, 480)
 		self.create_widgets()
 
 		dbpath = os.path.join(abspath(dirname(__file__)),"snip.db")
@@ -73,6 +74,10 @@ class MainWnd:
 		self.delbtn = Button(self.parent, text="Delete",
 							 command=self.on_delete)
 		self.delbtn.pack(side=LEFT)
+		
+		self.copybtn = Button(self.parent, text="Copy to clipboard",
+							 command=self.on_copy)
+		self.copybtn.pack(side=LEFT)
 
 		self.quitbtn = Button(self.parent, text="Quit",
 							  command=self.on_quit)
@@ -111,6 +116,10 @@ class MainWnd:
 		self.connection.commit()
 		self.snip_list.delete(ANCHOR)
 		self.on_new()
+
+	def on_copy(self):
+		self.parent.clipboard_clear()
+		self.parent.clipboard_append(self.snip_content.get(1.0, END))
 
 	def on_quit(self):
 		self.parent.destroy()
