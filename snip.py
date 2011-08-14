@@ -63,24 +63,19 @@ class MainWnd:
 		self.newbtn = Button(self.parent, text="New", command=self.on_new)
 		self.newbtn.pack(side=LEFT)
 
-		self.savebtn = Button(self.parent, text="Save",
-							  command=self.on_save)
+		self.savebtn = Button(self.parent, text="Save", command=self.on_save)
 		self.savebtn.pack(side=LEFT)
 
-		self.updatebtn = Button(self.parent, text="Update",
-								command=self.on_update)
+		self.updatebtn = Button(self.parent, text="Update", command=self.on_update)
 		self.updatebtn.pack(side=LEFT)
 
-		self.delbtn = Button(self.parent, text="Delete",
-							 command=self.on_delete)
+		self.delbtn = Button(self.parent, text="Delete", command=self.on_delete)
 		self.delbtn.pack(side=LEFT)
 		
-		self.copybtn = Button(self.parent, text="Copy to clipboard",
-							 command=self.on_copy)
+		self.copybtn = Button(self.parent, text="Copy to clipboard", command=self.on_copy)
 		self.copybtn.pack(side=LEFT)
 
-		self.quitbtn = Button(self.parent, text="Quit",
-							  command=self.on_quit)
+		self.quitbtn = Button(self.parent, text="Quit", command=self.on_quit)
 		self.quitbtn.pack(side=LEFT)
 
 
