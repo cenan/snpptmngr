@@ -50,9 +50,12 @@ class MainWnd:
 		self.search_str.set("")
 		self.search_box.pack(fill=X)
 
-		self.snip_list = Listbox(self.parent)
+		self.list_sb = Scrollbar(self.parent, orient=VERTICAL)
+		self.snip_list = Listbox(self.parent, yscrollcommand=self.list_sb.set)
+		self.list_sb.config(command=self.snip_list.yview)
 		self.snip_list.bind('<ButtonRelease-1>',self.on_snipselect)
 		self.snip_list.pack(side=LEFT,fill=Y)
+		self.list_sb.pack(side=LEFT,fill=Y)
 
 		self.snippetFont = Font(family="courier", size=11, weight=NORMAL)
 		self.snip_content = ScrolledText(self.parent, height=20, width=40,
