@@ -1,4 +1,4 @@
-snpptmngr
+##snpptmngr##
 
 This is a simple tool for storing my coding snippets.
 It is written in python, it uses tkinter for gui library and sqlite to store the snippets.
