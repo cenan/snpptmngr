@@ -36,6 +36,7 @@ class MainWnd:
 			self.cursor.execute('create table snippet (caption, content)')
 
 		self.fill_list()
+		self.snip_content.focus_set()
 
 	def ask_quit(self):
 		if tkMessageBox.askokcancel("Quit", "You want to quit now?"):
@@ -47,7 +48,7 @@ class MainWnd:
 	def create_widgets(self):
 		self.search_str = StringVar()
 		self.search_box = Entry(self.parent, textvariable=self.search_str)
-		self.search_str.set("")
+		self.search_str.set("New snippet")
 		self.search_box.pack(fill=X)
 
 		self.list_sb = Scrollbar(self.parent, orient=VERTICAL)
@@ -134,6 +135,7 @@ class MainWnd:
 			self.search_str.set(r['caption'])
 		if r['content']:
 			self.snip_content.insert(INSERT, r['content'])
+		self.snip_content.focus_set()
 
 if __name__=="__main__":
 	root = Tk()
