@@ -23,7 +23,7 @@ class MainWnd:
 
 		self.parent.title("snippets")
 		self.parent.configure(padx=10, pady=10)
-		self.parent.minsize(600, 480)
+		self.parent.minsize(630, 480)
 		self.create_widgets()
 
 		dbpath = os.path.join(abspath(dirname(__file__)),"snip.db")
@@ -83,7 +83,7 @@ class MainWnd:
 		self.snip_list.pack(side=LEFT, fill=BOTH, expand=1)
 		self.list_sb.pack(side=RIGHT, fill=Y)
 		self.pwin.add(self.list_f)
-		self.pwin.paneconfigure(self.list_f, minsize=150)
+		self.pwin.paneconfigure(self.list_f, minsize=177)
 
 		self.snippetFont = Font(family="courier", size=11, weight=NORMAL)
 		self.snip_content = ScrolledText(self.pwin, height=20, width=40,
