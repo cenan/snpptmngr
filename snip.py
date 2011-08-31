@@ -51,36 +51,45 @@ class MainWnd:
 		self.search_str.set("New snippet")
 		self.search_box.pack(fill=X)
 
-		self.list_sb = Scrollbar(self.parent, orient=VERTICAL)
-		self.snip_list = Listbox(self.parent, yscrollcommand=self.list_sb.set)
-		self.list_sb.config(command=self.snip_list.yview)
-		self.snip_list.bind('<ButtonRelease-1>',self.on_snipselect)
-		self.snip_list.pack(side=LEFT,fill=Y)
-		self.list_sb.pack(side=LEFT,fill=Y)
+		self.toolbar_f = Frame(self.parent, pady=5)
+		self.toolbar_f.pack(fill=X)
 
-		self.snippetFont = Font(family="courier", size=11, weight=NORMAL)
-		self.snip_content = ScrolledText(self.parent, height=20, width=40,
-										 padx=5, pady=5, 
-										 font=self.snippetFont)
-		self.snip_content.pack(fill=BOTH,expand=1)
-
-		self.newbtn = Button(self.parent, text="New", command=self.on_new)
+		self.newbtn = Button(self.toolbar_f, text="New", command=self.on_new)
 		self.newbtn.pack(side=LEFT)
 
-		self.savebtn = Button(self.parent, text="Save", command=self.on_save)
+		self.savebtn = Button(self.toolbar_f, text="Save", command=self.on_save)
 		self.savebtn.pack(side=LEFT)
 
-		self.updatebtn = Button(self.parent, text="Update", command=self.on_update)
+		self.updatebtn = Button(self.toolbar_f, text="Update", command=self.on_update)
 		self.updatebtn.pack(side=LEFT)
 
-		self.delbtn = Button(self.parent, text="Delete", command=self.on_delete)
+		self.delbtn = Button(self.toolbar_f, text="Delete", command=self.on_delete)
 		self.delbtn.pack(side=LEFT)
 		
-		self.copybtn = Button(self.parent, text="Copy to clipboard", command=self.on_copy)
+		self.copybtn = Button(self.toolbar_f, text="Copy to clipboard", command=self.on_copy)
 		self.copybtn.pack(side=LEFT)
 
-		self.quitbtn = Button(self.parent, text="Quit", command=self.on_quit)
+		self.quitbtn = Button(self.toolbar_f, text="Quit", command=self.on_quit)
 		self.quitbtn.pack(side=LEFT)
+
+		self.pwin = PanedWindow(self.parent, showhandle=True)
+		self.pwin.pack(fill=BOTH, expand=1)
+
+		self.list_f = Frame(self.pwin)
+		self.list_sb = Scrollbar(self.list_f, orient=VERTICAL)
+		self.snip_list = Listbox(self.list_f, yscrollcommand=self.list_sb.set)
+		self.list_sb.config(command=self.snip_list.yview)
+		self.snip_list.bind('<ButtonRelease-1>',self.on_snipselect)
+		self.snip_list.pack(side=LEFT, fill=BOTH, expand=1)
+		self.list_sb.pack(side=RIGHT, fill=Y)
+		self.pwin.add(self.list_f)
+		self.pwin.paneconfigure(self.list_f, minsize=150)
+
+		self.snippetFont = Font(family="courier", size=11, weight=NORMAL)
+		self.snip_content = ScrolledText(self.pwin, height=20, width=40,
+										 padx=5, pady=5, 
+										 font=self.snippetFont)
+		self.pwin.add(self.snip_content)
 
 
 	def fill_list(self):
